@@ -1,0 +1,87 @@
+==================
+Basic documents
+==================
+
+/**
+ * This is a description
+ * @alias something
+ */
+
+---
+
+(document
+  (description)
+  (block_tag (tag_name) (description)))
+
+======================
+Block tags with types
+======================
+
+/**
+ * This is a method
+ * @param {string} name - the name
+ * @param {integer} age - the age
+ * @return {Person} person
+ */
+
+---
+
+(document
+  (description)
+  (block_tag (tag_name) (type) (description))
+  (block_tag (tag_name) (type) (description))
+  (block_tag (tag_name) (type) (description)))
+
+============================
+Inline tags
+============================
+
+/**
+ * Set the shoe's color. Use {@link Shoe#setSize} to set the shoe size.
+ *
+ * @param {string} color - The shoe's color.
+ */
+
+---
+
+(document
+  (description (inline_tag (tag_name) (description)))
+  (block_tag (tag_name) (type) (description)))
+
+====================================
+Multi-line block tag descriptions
+====================================
+
+/**
+ * Set the shoe's color.
+ *
+ * @param {SHOE_COLORS} color - The shoe color. Must be an enumerated
+ * value of {@link SHOE_COLORS}.
+ */
+
+---
+
+(document
+  (description)
+  (block_tag
+    (tag_name)
+    (type)
+    (description
+      (inline_tag (tag_name) (description)))))
+
+===============================
+Block tags with no description
+================================
+
+/**
+ * This is a description of the MyClass constructor function.
+ * @class
+ * @classdesc This is a description of the MyClass class.
+ */
+
+---
+
+(document
+  (description)
+  (block_tag (tag_name))
+  (block_tag (tag_name) (description)))
