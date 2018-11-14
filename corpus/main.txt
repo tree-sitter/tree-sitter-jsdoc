@@ -4,33 +4,30 @@ Basic documents
 
 /**
  * This is a description
- * @alias something
  */
 
 ---
 
-(document
-  (description)
-  (block_tag (tag_name) (description)))
+(document (description))
 
 ======================
-Block tags with types
+Param tags
 ======================
 
 /**
  * This is a method
+ * @param name - the name
  * @param {string} name - the name
- * @param {integer} age - the age
- * @return {Person} person
+ * @param {integer} - the age
  */
 
 ---
 
 (document
   (description)
-  (block_tag (tag_name) (type) (description))
-  (block_tag (tag_name) (type) (description))
-  (block_tag (tag_name) (type) (description)))
+  (param_tag (identifier) (description))
+  (param_tag (type) (identifier) (description))
+  (param_tag (type) (description)))
 
 ============================
 Inline tags
@@ -38,15 +35,12 @@ Inline tags
 
 /**
  * Set the shoe's color. Use {@link Shoe#setSize} to set the shoe size.
- *
- * @param {string} color - The shoe's color.
  */
 
 ---
 
 (document
-  (description (inline_tag (tag_name) (description)))
-  (block_tag (tag_name) (type) (description)))
+  (description (inline_tag (tag_name) (description))))
 
 ====================================
 Multi-line block tag descriptions
@@ -63,9 +57,9 @@ Multi-line block tag descriptions
 
 (document
   (description)
-  (block_tag
-    (tag_name)
+  (param_tag
     (type)
+    (identifier)
     (description
       (inline_tag (tag_name) (description)))))
 
