@@ -281,7 +281,7 @@
     },
     "tag_name": {
       "type": "PATTERN",
-      "value": "@[a-z_]+"
+      "value": "@[a-zA-Z_]+"
     },
     "identifier": {
       "type": "TOKEN",

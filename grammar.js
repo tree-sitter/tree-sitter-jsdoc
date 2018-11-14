@@ -59,7 +59,7 @@ module.exports = grammar({
       '}'
     ),
 
-    tag_name: $ => /@[a-z_]+/,
+    tag_name: $ => /@[a-zA-Z_]+/,
 
     identifier: $ => token(prec(1, /[a-zA-Z_$][a-zA-Z_$0-9]*/)),
 
