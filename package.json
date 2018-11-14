@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-jsdoc",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "JSDoc grammar for tree-sitter",
   "main": "index.js",
   "keywords": [
