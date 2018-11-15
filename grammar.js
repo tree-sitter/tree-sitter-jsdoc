@@ -5,7 +5,7 @@ module.exports = grammar({
     token(choice(
       // Skip over stars at the beginnings of lines
       seq(/\n/, /[ \t]*/, repeat(seq('*', /[ \t]*/))),
-      /[ \t]/
+      /[ \t\r]/
     ))
   ],
 

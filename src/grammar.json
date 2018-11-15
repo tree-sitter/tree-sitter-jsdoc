@@ -508,7 +508,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[ \\t]"
+            "value": "[ \\t\\r]"
           }
         ]
       }
