@@ -1,6 +1,16 @@
-==================
-Basic documents
-==================
+===================
+One-line documents
+===================
+
+/** This is a description of the foo function. */
+
+---
+
+(document (description))
+
+====================
+Multi-line documents
+====================
 
 /**
  * This is a description
@@ -10,8 +20,35 @@ Basic documents
 
 (document (description))
 
+============================
+Tags with names
+============================
+
+/**
+ * @alias Apple.Core
+ * @event module:foo/bar.event:MyEvent
+ * @fires Hurl#snowball
+ * @exports hello/world
+ */
+
+---
+
+(document
+  (tag
+    (member_expression (identifier) (identifier)))
+  (tag
+    (member_expression
+      (qualified_expression
+        (identifier)
+        (path_expression (identifier) (identifier)))
+      (qualified_expression (identifier) (identifier))))
+  (tag
+    (member_expression (identifier) (identifier)))
+  (tag
+    (path_expression (identifier) (identifier))))
+
 ======================
-Param tags
+Tags with types and names
 ======================
 
 /**
@@ -25,9 +62,9 @@ Param tags
 
 (document
   (description)
-  (param_tag (identifier) (description))
-  (param_tag (type) (identifier) (description))
-  (param_tag (type) (description)))
+  (tag (identifier) (description))
+  (tag (type) (identifier) (description))
+  (tag (type) (description)))
 
 ============================
 Inline tags
@@ -57,7 +94,7 @@ Multi-line block tag descriptions
 
 (document
   (description)
-  (param_tag
+  (tag
     (type)
     (identifier)
     (description
@@ -77,5 +114,5 @@ Block tags with no description
 
 (document
   (description)
-  (block_tag (tag_name))
-  (block_tag (tag_name) (description)))
+  (tag (tag_name))
+  (tag (tag_name) (description)))
