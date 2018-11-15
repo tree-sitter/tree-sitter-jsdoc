@@ -35,16 +35,20 @@ Tags with names
 
 (document
   (tag
+    (tag_name)
     (member_expression (identifier) (identifier)))
   (tag
+    (tag_name)
     (member_expression
       (qualified_expression
         (identifier)
         (path_expression (identifier) (identifier)))
       (qualified_expression (identifier) (identifier))))
   (tag
+    (tag_name)
     (member_expression (identifier) (identifier)))
   (tag
+    (tag_name)
     (path_expression (identifier) (identifier))))
 
 ======================
@@ -62,9 +66,9 @@ Tags with types and names
 
 (document
   (description)
-  (tag (identifier) (description))
-  (tag (type) (identifier) (description))
-  (tag (type) (description)))
+  (tag (tag_name) (identifier) (description))
+  (tag (tag_name) (type) (identifier) (description))
+  (tag (tag_name) (type) (description)))
 
 ============================
 Inline tags
@@ -95,6 +99,7 @@ Multi-line block tag descriptions
 (document
   (description)
   (tag
+    (tag_name)
     (type)
     (identifier)
     (description

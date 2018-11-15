@@ -65,73 +65,13 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "@access"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@alias"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@augments"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@borrows"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@callback"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@constructor"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@event"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@exports"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@external"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@fires"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@function"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@mixes"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@name"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@namespace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@param"
-                },
-                {
-                  "type": "STRING",
-                  "value": "@property"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "tag_name_with_argument"
+              },
+              "named": true,
+              "value": "tag_name"
             },
             {
               "type": "CHOICE",
@@ -188,8 +128,13 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "@returns"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "tag_name_with_type"
+              },
+              "named": true,
+              "value": "tag_name"
             },
             {
               "type": "CHOICE",
@@ -273,6 +218,106 @@
           "value": "}"
         }
       ]
+    },
+    "tag_name_with_argument": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@access"
+          },
+          {
+            "type": "STRING",
+            "value": "@alias"
+          },
+          {
+            "type": "STRING",
+            "value": "@api"
+          },
+          {
+            "type": "STRING",
+            "value": "@augments"
+          },
+          {
+            "type": "STRING",
+            "value": "@borrows"
+          },
+          {
+            "type": "STRING",
+            "value": "@callback"
+          },
+          {
+            "type": "STRING",
+            "value": "@constructor"
+          },
+          {
+            "type": "STRING",
+            "value": "@event"
+          },
+          {
+            "type": "STRING",
+            "value": "@exports"
+          },
+          {
+            "type": "STRING",
+            "value": "@external"
+          },
+          {
+            "type": "STRING",
+            "value": "@fires"
+          },
+          {
+            "type": "STRING",
+            "value": "@function"
+          },
+          {
+            "type": "STRING",
+            "value": "@mixes"
+          },
+          {
+            "type": "STRING",
+            "value": "@name"
+          },
+          {
+            "type": "STRING",
+            "value": "@namespace"
+          },
+          {
+            "type": "STRING",
+            "value": "@param"
+          },
+          {
+            "type": "STRING",
+            "value": "@property"
+          }
+        ]
+      }
+    },
+    "tag_name_with_type": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@return"
+          },
+          {
+            "type": "STRING",
+            "value": "@returns"
+          },
+          {
+            "type": "STRING",
+            "value": "@throw"
+          },
+          {
+            "type": "STRING",
+            "value": "@throws"
+          }
+        ]
+      }
     },
     "tag_name": {
       "type": "PATTERN",

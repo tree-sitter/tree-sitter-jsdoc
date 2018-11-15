@@ -25,24 +25,7 @@ module.exports = grammar({
     tag: $ => choice(
       // type, name, and description
       seq(
-        choice(
-          '@access',
-          '@alias',
-          '@augments',
-          '@borrows',
-          '@callback',
-          '@constructor',
-          '@event',
-          '@exports',
-          '@external',
-          '@fires',
-          '@function',
-          '@mixes',
-          '@name',
-          '@namespace',
-          '@param',
-          '@property'
-        ),
+        alias($.tag_name_with_argument, $.tag_name),
         optional(seq('{', $.type, '}')),
         optional($._expression),
         optional($.description)
@@ -50,7 +33,7 @@ module.exports = grammar({
 
       // type and description
       seq(
-        '@returns',
+        alias($.tag_name_with_type, $.tag_name),
         optional(seq('{', $.type, '}')),
         optional($.description)
       ),
@@ -68,6 +51,33 @@ module.exports = grammar({
       $.description,
       '}'
     ),
+
+    tag_name_with_argument: $ => token(choice(
+      '@access',
+      '@alias',
+      '@api',
+      '@augments',
+      '@borrows',
+      '@callback',
+      '@constructor',
+      '@event',
+      '@exports',
+      '@external',
+      '@fires',
+      '@function',
+      '@mixes',
+      '@name',
+      '@namespace',
+      '@param',
+      '@property'
+    )),
+
+    tag_name_with_type: $ => token(choice(
+      '@return',
+      '@returns',
+      '@throw',
+      '@throws'
+    )),
 
     tag_name: $ => /@[a-zA-Z_]+/,
 
