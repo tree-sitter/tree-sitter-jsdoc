@@ -39,14 +39,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "tag_name",
+          "type": "description",
           "named": true
         },
         {
-          "type": "description",
+          "type": "tag_name",
           "named": true
         }
       ]
@@ -58,14 +58,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
           "named": true
         },
         {
-          "type": "qualified_expression",
+          "type": "member_expression",
           "named": true
         },
         {
@@ -73,7 +73,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "qualified_expression",
           "named": true
         }
       ]
@@ -85,7 +85,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
@@ -100,14 +100,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
           "named": true
         },
         {
-          "type": "qualified_expression",
+          "type": "member_expression",
           "named": true
         },
         {
@@ -115,7 +115,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "qualified_expression",
           "named": true
         }
       ]
@@ -127,18 +127,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "tag_name",
-          "named": true
-        },
-        {
-          "type": "tag_name",
-          "named": true
-        },
-        {
-          "type": "tag_name",
+          "type": "description",
           "named": true
         },
         {
@@ -146,15 +138,7 @@
           "named": true
         },
         {
-          "type": "type",
-          "named": true
-        },
-        {
-          "type": "description",
-          "named": true
-        },
-        {
-          "type": "qualified_expression",
+          "type": "member_expression",
           "named": true
         },
         {
@@ -162,11 +146,47 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "qualified_expression",
+          "named": true
+        },
+        {
+          "type": "tag_name",
+          "named": true
+        },
+        {
+          "type": "type",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "tag_name",
+    "named": true
+  },
+  {
+    "type": "type",
+    "named": true
   },
   {
     "type": "{",
@@ -177,43 +197,7 @@
     "named": false
   },
   {
-    "type": "tag_name_with_argument",
-    "named": true
-  },
-  {
-    "type": "tag_name_with_type",
-    "named": true
-  },
-  {
-    "type": "tag_name",
-    "named": true
-  },
-  {
-    "type": ":",
-    "named": false
-  },
-  {
-    "type": "/",
-    "named": false
-  },
-  {
-    "type": ".",
-    "named": false
-  },
-  {
-    "type": "#",
-    "named": false
-  },
-  {
     "type": "~",
     "named": false
-  },
-  {
-    "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "type",
-    "named": true
   }
 ]
