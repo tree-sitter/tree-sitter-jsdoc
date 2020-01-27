@@ -20,5 +20,11 @@
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
     "test": "tree-sitter test"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "text.jsdoc",
+      "injection-regex": "jsdoc"
+    }
+  ]
 }
