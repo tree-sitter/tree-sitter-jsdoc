@@ -1,2 +1,2 @@
-(tag_name) @tag
+(tag_name) @keyword
 (type) @type
