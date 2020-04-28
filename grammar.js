@@ -65,11 +65,14 @@ module.exports = grammar({
       '@external',
       '@fires',
       '@function',
+      '@member',
       '@mixes',
       '@name',
       '@namespace',
       '@param',
-      '@property'
+      '@property',
+      '@typedef',
+      '@type'
     )),
 
     tag_name_with_type: $ => token(choice(
@@ -82,6 +85,7 @@ module.exports = grammar({
     tag_name: $ => /@[a-zA-Z_]+/,
 
     _expression: $ => choice(
+      $._identifier_of_optional_type,
       $.identifier,
       $.member_expression,
       $.path_expression,
@@ -115,6 +119,33 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_$][a-zA-Z_$0-9]*/,
 
+    _identifier_of_optional_type: $ => 
+        seq(
+          "[",
+          $.identifier,
+          optional(
+            seq(
+              "=",
+              $._value
+            )
+          ),
+          "]"
+        ),
+
+    _list_of_values: $ => 
+      seq(
+        "[",
+        commaSep1($._value),
+        "]"
+      ),
+
+    _value: $ => choice(
+      $.atomic_value,
+      $._list_of_values
+    ),
+
+    atomic_value: $ => prec.left(/[^,\[\]\n]+/),        
+
     type: $ => /[^}\n]+/,
 
     _text: $ => token(prec(-1, /[^*{}@\s][^*{}\n]*([^*/{}\n][^*{}\n]*\*+)*/)),
@@ -124,3 +155,11 @@ module.exports = grammar({
     _end: $ => '/'
   }
 });
+
+function commaSep1 (rule) {
+  return sep1(rule, ',')
+}
+
+function sep1 (rule, separator) {
+  return seq(rule, repeat(seq(separator, rule)))
+}

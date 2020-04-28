@@ -121,3 +121,59 @@ Block tags with no description
   (description)
   (tag (tag_name))
   (tag (tag_name) (description)))
+
+===============================
+@typedef tag
+================================
+
+/**
+ * A number, or a string containing a number.
+ * @typedef {(number|string)} NumberLike
+ * @typedef {Object[]} NumberLike
+ * @typedef NumberLike
+ */
+
+---
+
+(document 
+  (description) 
+  (tag (tag_name) (type) (identifier)) 
+  (tag (tag_name) (type) (identifier)) 
+  (tag (tag_name) (identifier))
+) 
+
+===============================
+Various possible denotions of types
+================================
+
+/**
+ * Some description.
+ * @type {boolean}
+ * @type {Object[]}
+ * @type {Array.<MyClass>}
+ * @type {Object.<string, number>}
+ * @type {?number}
+ * @type {!number}
+ * @param {...number} num
+ * @param {number} [foo]
+ * @param {number=} foo - a description of the parameter
+ * @param {number} [foo=1] - a description of the parameter
+ * @param {number} [foo=[1, 2]] - a description of the parameter
+ */
+
+---
+
+(document
+  (description)
+  (tag (tag_name) (type))
+  (tag (tag_name) (type))
+  (tag (tag_name) (type))
+  (tag (tag_name) (type))
+  (tag (tag_name) (type))
+  (tag (tag_name) (type))
+  (tag (tag_name) (type) (identifier))
+  (tag (tag_name) (type) (identifier))
+  (tag (tag_name) (type) (identifier) (description))
+  (tag (tag_name) (type) (identifier) (atomic_value) (description))
+  (tag (tag_name) (type) (identifier) (atomic_value) (atomic_value) (description))
+)
