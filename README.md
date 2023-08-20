@@ -9,4 +9,4 @@ JSDoc grammar for [tree-sitter][].
 
 References
 
-* [UseJSDoc.org](http://usejsdoc.org/)
+* [UseJSDoc](https://jsdoc.app/)
