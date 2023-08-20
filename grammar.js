@@ -1,11 +1,11 @@
 module.exports = grammar({
   name: 'jsdoc',
 
-  extras: $ => [
+  extras: _ => [
     token(choice(
       // Skip over stars at the beginnings of lines
       seq(/\n/, /[ \t]*/, repeat(seq('*', /[ \t]*/))),
-      /[ \t\r]/
+      /\s/
     ))
   ],
 
@@ -52,7 +52,7 @@ module.exports = grammar({
       '}'
     ),
 
-    tag_name_with_argument: $ => token(choice(
+    tag_name_with_argument: _ => token(choice(
       '@access',
       '@alias',
       '@api',
@@ -72,17 +72,18 @@ module.exports = grammar({
       '@property'
     )),
 
-    tag_name_with_type: $ => token(choice(
+    tag_name_with_type: _ => token(choice(
       '@return',
       '@returns',
       '@throw',
       '@throws'
     )),
 
-    tag_name: $ => /@[a-zA-Z_]+/,
+    tag_name: _ => /@[a-zA-Z_]+/,
 
     _expression: $ => choice(
       $.identifier,
+      $.optional_identifier,
       $.member_expression,
       $.path_expression,
       $.qualified_expression
@@ -113,14 +114,16 @@ module.exports = grammar({
       )
     ),
 
-    identifier: $ => /[a-zA-Z_$][a-zA-Z_$0-9]*/,
+    optional_identifier: $ => seq('[', $.identifier, ']'),
 
-    type: $ => /[^}\n]+/,
+    identifier: _ => /[a-zA-Z_$][a-zA-Z_$0-9]*/,
 
-    _text: $ => token(prec(-1, /[^*{}@\s][^*{}\n]*([^*/{}\n][^*{}\n]*\*+)*/)),
+    type: _ => /[^}\n]+/,
 
-    _begin: $ => token(seq('/', repeat('*'))),
+    _text: _ => token(prec(-1, /[^*{}@\s][^*{}\n]*([^*/{}\n][^*{}\n]*\*+)*/)),
 
-    _end: $ => '/'
+    _begin: _ => token(seq('/', repeat('*'))),
+
+    _end: _ => '/'
   }
 });
