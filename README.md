@@ -1,12 +1,5 @@
-tree-sitter-jsdoc
-=================
+# tree-sitter-jsdoc
 
-[![Build Status](https://travis-ci.org/tree-sitter/tree-sitter-jsdoc.svg?branch=master)](https://travis-ci.org/tree-sitter/tree-sitter-jsdoc)
+[![build](https://github.com/tree-sitter/tree-sitter-python/actions/workflows/ci.yml/badge.svg)](https://github.com/tree-sitter/tree-sitter-python/actions/workflows/ci.yml)
 
-JSDoc grammar for [tree-sitter][].
-
-[tree-sitter]: https://github.com/tree-sitter/tree-sitter
-
-References
-
-* [UseJSDoc](https://jsdoc.app/)
+[JSDoc](<(https://jsdoc.app/)>) grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
