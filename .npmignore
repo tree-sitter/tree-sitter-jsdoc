@@ -1,3 +1,5 @@
-target
-Cargo.lock
-build
+/test
+/examples
+/build
+/script
+/target
