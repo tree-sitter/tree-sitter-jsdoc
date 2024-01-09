@@ -15,6 +15,10 @@
 module.exports = grammar({
   name: 'jsdoc',
 
+  externals: $ => [
+    $.type,
+  ],
+
   extras: _ => [
     token(choice(
       // Skip over stars at the beginnings of lines
@@ -33,7 +37,7 @@ module.exports = grammar({
 
     description: $ => seq(
       $._text,
-      repeat(choice($._text, $.inline_tag)),
+      repeat(choice($._text, $.inline_tag, $._inline_tag_false_positive)),
     ),
 
     tag: $ => choice(
@@ -66,6 +70,12 @@ module.exports = grammar({
       '}',
     ),
 
+    _inline_tag_false_positive: _ => prec.left(1, seq(
+      '{',
+      /[^@}]+/,
+      optional('}'),
+    )),
+
     tag_name_with_argument: _ => token(choice(
       '@access',
       '@alias',
@@ -95,6 +105,7 @@ module.exports = grammar({
       '@returns',
       '@throw',
       '@throws',
+      '@type',
     )),
 
     tag_name: _ => /@[a-zA-Z_]+/,
@@ -135,8 +146,6 @@ module.exports = grammar({
     optional_identifier: $ => seq('[', $.identifier, ']'),
 
     identifier: _ => /[a-zA-Z_$][a-zA-Z_$0-9]*/,
-
-    type: _ => /[^}\n]+/,
 
     _text: _ => token(prec(-1, /[^*{}@\s][^*{}\n]*([^*/{}\n][^*{}\n]*\*+)*/)),
 
