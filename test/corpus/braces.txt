@@ -80,6 +80,7 @@ EOF before balanced braces
 ---
 
 (document
+  (description)
   (tag
     (tag_name)
     (ERROR)
