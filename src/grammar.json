@@ -224,32 +224,14 @@
       ]
     },
     "_inline_tag_false_positive": {
-      "type": "PREC_LEFT",
-      "value": 1,
+      "type": "TOKEN",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "{"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[^@}]+"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "}"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
+        "type": "PREC_LEFT",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "\\{[^@}]+\\}?"
+        }
       }
     },
     "tag_name_with_argument": {

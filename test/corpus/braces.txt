@@ -79,10 +79,6 @@ EOF before balanced braces
  * @type {{a: number, b: string, c}
 ---
 
-(document
+(ERROR
   (description)
-  (tag
-    (tag_name)
-    (ERROR)
-    (type))
-  (MISSING _end))
+  (tag_name))

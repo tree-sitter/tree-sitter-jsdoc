@@ -70,11 +70,7 @@ module.exports = grammar({
       '}',
     ),
 
-    _inline_tag_false_positive: _ => prec.left(1, seq(
-      /{/,
-      /[^@}]+/,
-      optional(/}/),
-    )),
+    _inline_tag_false_positive: _ => token(prec.left(1, /\{[^@}]+\}?/)),
 
     tag_name_with_argument: _ => token(choice(
       '@access',
