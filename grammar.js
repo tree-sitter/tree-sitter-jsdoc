@@ -77,6 +77,7 @@ module.exports = grammar({
       '@event',
       '@exports',
       '@external',
+      '@extends',
       '@fires',
       '@function',
       '@mixes',
@@ -84,6 +85,9 @@ module.exports = grammar({
       '@namespace',
       '@param',
       '@property',
+      '@prop',
+      '@satisfies',
+      '@typedef',
     )),
 
     tag_name_with_type: _ => token(choice(

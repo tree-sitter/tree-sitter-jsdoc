@@ -266,6 +266,10 @@
           },
           {
             "type": "STRING",
+            "value": "@extends"
+          },
+          {
+            "type": "STRING",
             "value": "@fires"
           },
           {
@@ -291,6 +295,18 @@
           {
             "type": "STRING",
             "value": "@property"
+          },
+          {
+            "type": "STRING",
+            "value": "@prop"
+          },
+          {
+            "type": "STRING",
+            "value": "@satisfies"
+          },
+          {
+            "type": "STRING",
+            "value": "@typedef"
           }
         ]
       }

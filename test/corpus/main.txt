@@ -121,3 +121,22 @@ Block tags with no description
   (description)
   (tag (tag_name))
   (tag (tag_name) (description)))
+
+===============================
+Newer JSDoc tags
+===============================
+
+/**
+ * @typedef {object} Foo
+ * @prop {string} bar
+ * @satisfies {Baz}
+ * @augments Quux
+ */
+
+---
+
+(document
+  (tag (tag_name) (type) (identifier))
+  (tag (tag_name) (type) (identifier))
+  (tag (tag_name) (type))
+  (tag (tag_name) (identifier)))
