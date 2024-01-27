@@ -1,4 +1,4 @@
-#include <tree_sitter/parser.h>
+#include "tree_sitter/parser.h"
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC diagnostic push
@@ -16,7 +16,7 @@
 #define MAX_ALIAS_SEQUENCE_LENGTH 6
 #define PRODUCTION_ID_COUNT 1
 
-enum {
+enum ts_symbol_identifiers {
   anon_sym_LBRACE = 1,
   anon_sym_RBRACE = 2,
   aux_sym__inline_tag_false_positive_token1 = 3,
@@ -326,8 +326,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '{') ADVANCE(21);
       if (lookahead == '}') ADVANCE(22);
       if (lookahead == '~') ADVANCE(131);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(19)
       if (lookahead == '$' ||
           ('A' <= lookahead && lookahead <= 'Z') ||
@@ -338,24 +337,22 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 1:
       if (lookahead == '\n') SKIP(1)
-      if (lookahead == '\r') SKIP(2)
       if (lookahead == '*') SKIP(1)
       if (lookahead == '/') ADVANCE(138);
       if (lookahead == ']') ADVANCE(133);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(1)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(2)
       END_STATE();
     case 2:
       if (lookahead == '\n') SKIP(1)
       if (lookahead == '/') ADVANCE(138);
       if (lookahead == ']') ADVANCE(133);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(2)
       END_STATE();
     case 3:
       if (lookahead == '\n') SKIP(3)
-      if (lookahead == '\r') SKIP(4)
       if (lookahead == '*') SKIP(3)
       if (lookahead == '/') ADVANCE(139);
       if (lookahead == '@') ADVANCE(16);
@@ -363,6 +360,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '{') ADVANCE(21);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(3)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(4)
       if (lookahead == '$' ||
           ('A' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
@@ -376,8 +374,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '@') ADVANCE(16);
       if (lookahead == '[') ADVANCE(132);
       if (lookahead == '{') ADVANCE(21);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(4)
       if (lookahead == '$' ||
           ('A' <= lookahead && lookahead <= 'Z') ||
@@ -389,7 +386,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 5:
       if (lookahead == '\n') SKIP(5)
-      if (lookahead == '\r') SKIP(6)
       if (lookahead == '#') ADVANCE(130);
       if (lookahead == '*') SKIP(5)
       if (lookahead == '.') ADVANCE(129);
@@ -399,6 +395,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '~') ADVANCE(131);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(5)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(6)
       if (lookahead != 0 &&
           lookahead != '{' &&
           lookahead != '}') ADVANCE(137);
@@ -411,8 +408,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == ':') ADVANCE(126);
       if (lookahead == '@') ADVANCE(16);
       if (lookahead == '~') ADVANCE(131);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(6)
       if (lookahead != 0 &&
           lookahead != '*' &&
@@ -427,8 +423,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == ':') ADVANCE(126);
       if (lookahead == '@') ADVANCE(16);
       if (lookahead == '~') ADVANCE(131);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(6)
       if (lookahead != 0 &&
           lookahead != '*' &&
@@ -437,7 +432,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 8:
       if (lookahead == '\n') SKIP(8)
-      if (lookahead == '\r') SKIP(9)
       if (lookahead == '*') SKIP(8)
       if (lookahead == '/') ADVANCE(139);
       if (lookahead == '@') ADVANCE(16);
@@ -445,6 +439,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '}') ADVANCE(22);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(8)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(9)
       if (lookahead != 0) ADVANCE(137);
       END_STATE();
     case 9:
@@ -453,15 +448,13 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '@') ADVANCE(16);
       if (lookahead == '{') ADVANCE(21);
       if (lookahead == '}') ADVANCE(22);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(9)
       if (lookahead != 0 &&
           lookahead != '*') ADVANCE(137);
       END_STATE();
     case 10:
       if (lookahead == '\n') SKIP(10)
-      if (lookahead == '\r') SKIP(11)
       if (lookahead == '#') ADVANCE(130);
       if (lookahead == '*') SKIP(10)
       if (lookahead == '.') ADVANCE(129);
@@ -470,6 +463,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '~') ADVANCE(131);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(10)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(11)
       if (lookahead != 0 &&
           lookahead != '{' &&
           lookahead != '}') ADVANCE(137);
@@ -481,8 +475,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '/') ADVANCE(139);
       if (lookahead == '@') ADVANCE(16);
       if (lookahead == '~') ADVANCE(131);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(11)
       if (lookahead != 0 &&
           lookahead != '*' &&
@@ -491,12 +484,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 12:
       if (lookahead == '\n') SKIP(12)
-      if (lookahead == '\r') SKIP(13)
       if (lookahead == '*') SKIP(12)
       if (lookahead == '{') ADVANCE(21);
       if (lookahead == '}') ADVANCE(22);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(12)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(13)
       if (lookahead != 0 &&
           lookahead != '@') ADVANCE(137);
       END_STATE();
@@ -504,8 +497,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '\n') SKIP(12)
       if (lookahead == '{') ADVANCE(21);
       if (lookahead == '}') ADVANCE(22);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(13)
       if (lookahead != 0 &&
           lookahead != '*' &&
@@ -514,8 +506,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 14:
       if (lookahead == '\n') ADVANCE(23);
       if (lookahead == '@') ADVANCE(17);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(24);
       if (lookahead != 0 &&
           lookahead != '}') ADVANCE(25);
@@ -551,7 +542,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 18:
       if (eof) ADVANCE(20);
       if (lookahead == '\n') SKIP(18)
-      if (lookahead == '\r') SKIP(19)
       if (lookahead == '#') ADVANCE(130);
       if (lookahead == '*') SKIP(18)
       if (lookahead == '.') ADVANCE(129);
@@ -565,6 +555,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '~') ADVANCE(131);
       if (lookahead == '\t' ||
           lookahead == ' ') SKIP(18)
+      if ((11 <= lookahead && lookahead <= '\r')) SKIP(19)
       if (lookahead == '$' ||
           ('A' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
@@ -584,8 +575,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '{') ADVANCE(21);
       if (lookahead == '}') ADVANCE(22);
       if (lookahead == '~') ADVANCE(131);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(19)
       if (lookahead == '$' ||
           ('A' <= lookahead && lookahead <= 'Z') ||
@@ -606,10 +596,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 23:
       ACCEPT_TOKEN(aux_sym__inline_tag_false_positive_token1);
       if (lookahead == '\n') ADVANCE(23);
-      if (lookahead == '\r') ADVANCE(24);
       if (lookahead == '*') ADVANCE(23);
       if (lookahead == '\t' ||
           lookahead == ' ') ADVANCE(23);
+      if ((11 <= lookahead && lookahead <= '\r')) ADVANCE(24);
       if (lookahead != 0 &&
           lookahead != '@' &&
           lookahead != '}') ADVANCE(25);
@@ -617,8 +607,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 24:
       ACCEPT_TOKEN(aux_sym__inline_tag_false_positive_token1);
       if (lookahead == '\n') ADVANCE(23);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(24);
       if (lookahead != 0 &&
           lookahead != '@' &&
@@ -1470,20 +1459,6 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
   [53] = {.lex_state = 0},
 };
 
-enum {
-  ts_external_token_type = 0,
-};
-
-static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
-  [ts_external_token_type] = sym_type,
-};
-
-static const bool ts_external_scanner_states[2][EXTERNAL_TOKEN_COUNT] = {
-  [1] = {
-    [ts_external_token_type] = true,
-  },
-};
-
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
@@ -2120,6 +2095,20 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [170] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
   [172] = {.entry = {.count = 1, .reusable = true}}, SHIFT(34),
   [174] = {.entry = {.count = 1, .reusable = true}}, SHIFT(20),
+};
+
+enum ts_external_scanner_symbol_identifiers {
+  ts_external_token_type = 0,
+};
+
+static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
+  [ts_external_token_type] = sym_type,
+};
+
+static const bool ts_external_scanner_states[2][EXTERNAL_TOKEN_COUNT] = {
+  [1] = {
+    [ts_external_token_type] = true,
+  },
 };
 
 #ifdef __cplusplus
