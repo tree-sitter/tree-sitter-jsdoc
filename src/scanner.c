@@ -13,7 +13,7 @@ unsigned tree_sitter_jsdoc_external_scanner_serialize(void *p, char *buffer) { r
 void tree_sitter_jsdoc_external_scanner_deserialize(void *p, const char *b, unsigned n) {}
 
 // Scan to the next balanced `}` character.
-bool scan_for_type(TSLexer *lexer) {
+static bool scan_for_type(TSLexer *lexer) {
   int stack = 0;
   while (true) {
     if (lexer->eof(lexer)) {

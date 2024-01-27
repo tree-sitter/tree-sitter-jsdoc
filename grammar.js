@@ -73,7 +73,7 @@ module.exports = grammar({
     _inline_tag_false_positive: _ => prec.left(1, seq(
       '{',
       /[^@}]+/,
-      optional('}'),
+      optional(/}/),
     )),
 
     tag_name_with_argument: _ => token(choice(

@@ -241,7 +241,7 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
+                "type": "PATTERN",
                 "value": "}"
               },
               {
