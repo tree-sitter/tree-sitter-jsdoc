@@ -69,3 +69,19 @@ Complex types
     (type)
     (identifier)
     (description)))
+
+=======================================
+EOF before balanced braces
+=======================================
+
+/**
+ * Here we're testing that the scanner doesn't get stuck in an infinite loop.
+ * @type {{a: number, b: string, c}
+---
+
+(document
+  (tag
+    (tag_name)
+    (ERROR)
+    (type))
+  (MISSING _end))

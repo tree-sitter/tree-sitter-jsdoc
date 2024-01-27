@@ -16,6 +16,9 @@ void tree_sitter_jsdoc_external_scanner_deserialize(void *p, const char *b, unsi
 bool scan_for_type(TSLexer *lexer) {
   int stack = 0;
   while (true) {
+    if (lexer->eof(lexer)) {
+      return false;
+    }
     switch (lexer->lookahead) {
       case '{':
         stack++;
@@ -25,6 +28,7 @@ bool scan_for_type(TSLexer *lexer) {
         if (stack == -1) { return true; }
         break;
       case '\n':
+      case '\0': // fallthrough
         // Something's gone wrong.
         return false;
       default:;
