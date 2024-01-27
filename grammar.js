@@ -71,7 +71,7 @@ module.exports = grammar({
     ),
 
     _inline_tag_false_positive: _ => prec.left(1, seq(
-      '{',
+      /{/,
       /[^@}]+/,
       optional(/}/),
     )),
