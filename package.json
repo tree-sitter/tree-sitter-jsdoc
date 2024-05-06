@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-jsdoc",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "JSDoc grammar for tree-sitter",
   "repository": "github:tree-sitter/tree-sitter-jsdoc",
   "license": "MIT",
