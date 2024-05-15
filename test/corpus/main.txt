@@ -60,6 +60,7 @@ Tags with types and names
  * @param name - the name
  * @param {string} name - the name
  * @param {integer} - the age
+ * @returns {string} - a string
  */
 
 ---
@@ -68,6 +69,7 @@ Tags with types and names
   (description)
   (tag (tag_name) (identifier) (description))
   (tag (tag_name) (type) (identifier) (description))
+  (tag (tag_name) (type) (description))
   (tag (tag_name) (type) (description)))
 
 ============================
