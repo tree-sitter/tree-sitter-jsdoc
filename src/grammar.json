@@ -293,6 +293,10 @@
           },
           {
             "type": "STRING",
+            "value": "@import"
+          },
+          {
+            "type": "STRING",
             "value": "@mixes"
           },
           {
