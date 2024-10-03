@@ -13,6 +13,7 @@ module.exports = grammar({
 
   externals: $ => [
     $.type,
+    $.code_block_line,
   ],
 
   extras: _ => [
@@ -31,9 +32,11 @@ module.exports = grammar({
       $._end,
     ),
 
-    description: $ => seq(
-      $._text,
-      repeat(choice($._text, $.inline_tag, $._inline_tag_false_positive)),
+    description: $ => choice(
+      seq(
+        choice($._text, $.code_block),
+        repeat(choice($._text, $.inline_tag, $._inline_tag_false_positive, $.code_block)),
+      ),
     ),
 
     tag: $ => choice(
@@ -134,6 +137,19 @@ module.exports = grammar({
         $.qualified_expression,
       ),
     ),
+
+    code_block: $ => seq(
+      seq(
+        '```',
+        optional($.code_block_language),
+      ),
+      repeat($.code_block_line),
+      '```',
+    ),
+
+    code_block_language: _ => /[a-z]+/,
+
+    code_block_line: _ => /(([^`\n][^`\n][^`\n]).)+/,
 
     optional_identifier: $ => seq('[', $.identifier, ']'),
 

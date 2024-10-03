@@ -1,0 +1,197 @@
+=====================================
+Single line code block
+=====================================
+
+/**
+ * ```
+ * console.log('Hello world!')
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_line))))
+
+=====================================
+Single line code block with language
+=====================================
+
+/**
+ * ```typescript
+ * console.log('Hello world!')
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_language)
+      (code_block_line))))
+
+
+=====================================
+Inside tag
+=====================================
+
+/**
+ * @example
+ * ```typescript
+ * console.log('Hello world!')
+ * ```
+ */
+
+---
+
+(document
+  (tag
+    (tag_name)
+    (description
+      (code_block
+        (code_block_language)
+        (code_block_line)))))
+
+=====================================
+Multi-line code block
+=====================================
+
+/**
+ * ```
+ * console.log('Hello world!')
+ * console.log('Goodbye world!')
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_line)
+      (code_block_line))))
+
+=====================================
+Multi-line code block with language
+=====================================
+
+/**
+ * ```typescript
+ * console.log('Hello world!')
+ * console.log('Goodbye world!')
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_language)
+      (code_block_line)
+      (code_block_line))))
+
+=====================================
+Multiple code blocks
+=====================================
+
+/**
+ * ```typescript
+ * console.log('Hello world!')
+ * console.log('I am alive!')
+ * console.log('Goodbye world!')
+ * ```
+ *
+ * ```
+ * console.log('Test')
+ * ```
+ */
+
+---
+
+(document
+    (description
+      (code_block
+        (code_block_language)
+	(code_block_line)
+	(code_block_line)
+	(code_block_line))
+      (code_block
+        (code_block_line))))
+
+=====================================
+Multiple code blocks with comments
+=====================================
+
+/**
+ * Here's code example:
+ * ```typescript
+ * console.log('Hello world!')
+ * console.log('Goodbye world!')
+ * ```
+ *
+ * Other example also here:
+ * ```
+ * console.log('Test')
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_language)
+      (code_block_line)
+      (code_block_line))
+    (code_block
+      (code_block_line))))
+
+=====================================
+With ES decorators
+=====================================
+
+/**
+ * ```
+ * class MyClass {
+ *     @Decorator('parameter')
+ *     private field: Type;
+ * }
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_line)
+      (code_block_line)
+      (code_block_line)
+      (code_block_line))))
+=====================================
+With TS decorators
+=====================================
+
+/**
+ * ```typescript
+ * class MyClass {
+ *     @Decorator('parameter')
+ *     private field: Type;
+ * }
+ * ```
+ */
+
+---
+
+(document
+  (description
+    (code_block
+      (code_block_language)
+      (code_block_line)
+      (code_block_line)
+      (code_block_line)
+      (code_block_line))))
