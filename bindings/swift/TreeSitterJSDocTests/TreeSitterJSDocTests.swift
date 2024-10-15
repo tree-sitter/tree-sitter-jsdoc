@@ -1,8 +1,8 @@
 import XCTest
 import SwiftTreeSitter
-import TreeSitterJsdoc
+import TreeSitterJSDoc
 
-final class TreeSitterJsdocTests: XCTestCase {
+final class TreeSitterJSDocTests: XCTestCase {
     func testCanLoadGrammar() throws {
         let parser = Parser()
         let language = Language(language: tree_sitter_jsdoc())
