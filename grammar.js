@@ -111,9 +111,11 @@ module.exports = grammar({
     _expression: $ => choice(
       $.identifier,
       $.optional_identifier,
+      $.number,
       $.member_expression,
       $.path_expression,
       $.qualified_expression,
+      $.array_expression,
     ),
 
     qualified_expression: $ => prec(1, seq(
@@ -141,6 +143,12 @@ module.exports = grammar({
       ),
     ),
 
+    array_expression: $ => seq(
+      '[',
+      commaSep($._expression),
+      ']',
+    ),
+
     code_block: $ => seq(
       '```',
       optional($.code_block_language),
@@ -156,6 +164,43 @@ module.exports = grammar({
 
     identifier: _ => /[a-zA-Z_$][a-zA-Z_$0-9]*/,
 
+    // https://github.com/tree-sitter/tree-sitter-javascript/blob/22da14e17db59c35aae2b9da2728337c301ce741/grammar.js#L1096
+    number: _ => {
+      const hexLiteral = seq(
+        choice('0x', '0X'),
+        /[\da-fA-F](_?[\da-fA-F])*/,
+      );
+
+      const decimalDigits = /\d(_?\d)*/;
+      const signedInteger = seq(optional(choice('-', '+')), decimalDigits);
+      const exponentPart = seq(choice('e', 'E'), signedInteger);
+
+      const binaryLiteral = seq(choice('0b', '0B'), /[0-1](_?[0-1])*/);
+
+      const octalLiteral = seq(choice('0o', '0O'), /[0-7](_?[0-7])*/);
+
+      const bigintLiteral = seq(choice(hexLiteral, binaryLiteral, octalLiteral, decimalDigits), 'n');
+
+      const decimalIntegerLiteral = choice(
+        '0',
+        seq(optional('0'), /[1-9]/, optional(seq(optional('_'), decimalDigits))),
+      );
+
+      const decimalLiteral = choice(
+        seq(decimalIntegerLiteral, '.', optional(decimalDigits), optional(exponentPart)),
+        seq('.', decimalDigits, optional(exponentPart)),
+        seq(decimalIntegerLiteral, exponentPart),
+        decimalDigits,
+      );
+
+      return token(choice(
+        hexLiteral,
+        decimalLiteral,
+        binaryLiteral,
+        octalLiteral,
+        bigintLiteral,
+      ));
+    },
     _text: _ => token(prec(-1, /[^*{}@\s][^*{}\n]*([^*/{}\n][^*{}\n]*\*+)*/)),
 
     _begin: _ => seq('/', repeat('*')),
@@ -163,3 +208,25 @@ module.exports = grammar({
     _end: _ => '/',
   },
 });
+
+/**
+ * Creates a rule to optionally match one or more of the rules separated by a comma
+ *
+ * @param {Rule} rule
+ *
+ * @returns {ChoiceRule}
+ */
+function commaSep(rule) {
+  return optional(commaSep1(rule));
+}
+
+/**
+ * Creates a rule to match one or more of the rules separated by a comma
+ *
+ * @param {Rule} rule
+ *
+ * @returns {SeqRule}
+ */
+function commaSep1(rule) {
+  return seq(rule, repeat(seq(',', rule)));
+}
