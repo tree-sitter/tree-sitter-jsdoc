@@ -24,6 +24,10 @@ module.exports = grammar({
     )),
   ],
 
+  supertypes: $ => [
+    $.expression,
+  ],
+
   rules: {
     document: $ => seq(
       $._begin,
@@ -44,7 +48,7 @@ module.exports = grammar({
       seq(
         alias($.tag_name_with_argument, $.tag_name),
         optional(seq('{', $.type, '}')),
-        optional(choice($._expression, $.optional_identifier)),
+        optional(choice($.expression, $.optional_identifier)),
         optional($.description),
       ),
 
@@ -108,7 +112,7 @@ module.exports = grammar({
 
     tag_name: _ => /@[a-zA-Z_]+/,
 
-    _expression: $ => choice(
+    expression: $ => choice(
       $.identifier,
       $.number,
       $.member_expression,
@@ -120,7 +124,7 @@ module.exports = grammar({
     qualified_expression: $ => prec(1, seq(
       $.identifier,
       ':',
-      $._expression,
+      $.expression,
     )),
 
     path_expression: $ => prec(2, seq(
@@ -130,7 +134,7 @@ module.exports = grammar({
     )),
 
     member_expression: $ => seq(
-      $._expression,
+      $.expression,
       choice(
         '.',
         '#',
@@ -144,7 +148,7 @@ module.exports = grammar({
 
     array_expression: $ => seq(
       '[',
-      commaSep($._expression),
+      commaSep($.expression),
       ']',
     ),
 
@@ -162,7 +166,7 @@ module.exports = grammar({
     optional_identifier: $ => prec(1, seq(
       '[',
       $.identifier,
-      optional(seq('=', field('value', $._expression))),
+      optional(seq('=', field('value', $.expression))),
       ']',
     )),
 
