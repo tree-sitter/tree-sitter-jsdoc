@@ -95,6 +95,7 @@ module.exports = grammar({
     tag_name_with_type: _ => token(choice(
       '@return',
       '@returns',
+      '@this',
       '@throw',
       '@throws',
       '@type',

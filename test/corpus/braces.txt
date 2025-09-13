@@ -51,6 +51,7 @@ Complex types
  * @type {{a: number, b: string, c}}
  * @param {[a: number, b:string]} foo A parameter.
  * @param {[a: number, { b: string, c: boolean}]} foo A parameter.
+ * @type { {a: number, b: {c: string, d: {e: boolean}}} }
  */
 
 ---
@@ -68,7 +69,10 @@ Complex types
     (tag_name)
     (type)
     (identifier)
-    (description)))
+    (description))
+  (tag
+    (tag_name)
+    (type)))
 
 =======================================
 EOF before balanced braces
