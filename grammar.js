@@ -86,6 +86,7 @@ module.exports = grammar({
       '@fires',
       '@function',
       '@import',
+      '@member',
       '@mixes',
       '@name',
       '@namespace',
