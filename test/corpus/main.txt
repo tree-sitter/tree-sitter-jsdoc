@@ -142,3 +142,30 @@ Newer JSDoc tags
   (tag (tag_name) (type) (identifier))
   (tag (tag_name) (type))
   (tag (tag_name) (identifier)))
+
+=======================================
+Optional parameters with default values
+=======================================
+
+/**
+ * @param {number} [foo=1]
+ * @param {number} [foo=[1, 2]]
+ */
+
+---
+
+(document
+  (tag
+	(tag_name)
+	(type)
+	(optional_identifier
+	  (identifier)
+	  (number)))
+  (tag
+	(tag_name)
+	(type)
+	(optional_identifier
+	  (identifier)
+	  (array_expression
+		(number)
+		(number)))))

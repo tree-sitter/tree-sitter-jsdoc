@@ -44,7 +44,7 @@ module.exports = grammar({
       seq(
         alias($.tag_name_with_argument, $.tag_name),
         optional(seq('{', $.type, '}')),
-        optional($._expression),
+        optional(choice($._expression, $.optional_identifier)),
         optional($.description),
       ),
 
@@ -110,7 +110,6 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $.identifier,
-      $.optional_identifier,
       $.number,
       $.member_expression,
       $.path_expression,
@@ -160,7 +159,12 @@ module.exports = grammar({
 
     code_block_line: _ => /(([^`\n][^`\n][^`\n]).)+/,
 
-    optional_identifier: $ => seq('[', $.identifier, ']'),
+    optional_identifier: $ => prec(1, seq(
+      '[',
+      $.identifier,
+      optional(seq('=', field('value', $._expression))),
+      ']',
+    )),
 
     identifier: _ => /[a-zA-Z_$][a-zA-Z_$0-9]*/,
 
