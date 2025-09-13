@@ -142,7 +142,7 @@ module.exports = grammar({
 
     _text: _ => token(prec(-1, /[^*{}@\s][^*{}\n]*([^*/{}\n][^*{}\n]*\*+)*/)),
 
-    _begin: _ => token(seq('/', repeat('*'))),
+    _begin: _ => seq('/', repeat('*')),
 
     _end: _ => '/',
   },
